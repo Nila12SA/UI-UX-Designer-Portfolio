@@ -5,7 +5,7 @@ const projects = [
     description:
       "Tripzy is a smart ride-booking mobile application designed with accessibility and inclusive user experience in mind.",
     className: "tripzy",
-    route: "/projects/tripzy",
+    route: "#/projects/tripzy",
   },
   {
     title: "Aura",
@@ -13,7 +13,7 @@ const projects = [
     description:
       "Designed a wellness-focused interface to help users manage stress and monitor health indicators.",
     className: "aura",
-    route: "/projects/aura",
+    route: "#/projects/aura",
   },
   {
     title: "BloomCraft",
@@ -56,3 +56,4 @@ function Projects() {
 }
 
 export default Projects;
+

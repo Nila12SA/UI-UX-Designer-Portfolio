@@ -9,7 +9,7 @@ const navLinks = [
   { id: "contact", label: "Contact" },
 ];
 
-function Header() {
+function Header({ actionHref, actionLabel = "View My Work", links = navLinks }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -21,7 +21,14 @@ function Header() {
   }, []);
 
   const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const section = document.getElementById(id);
+
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.location.href = `/#${id}`;
+    }
+
     setIsOpen(false);
   };
 
@@ -35,7 +42,7 @@ function Header() {
         </button>
 
         <div className={`luxury-links ${isOpen ? "is-open" : ""}`}>
-          {navLinks.map((link) => (
+          {links.map((link) => (
             <button key={link.id} onClick={() => scrollToSection(link.id)} type="button">
               {link.label}
             </button>
@@ -43,7 +50,7 @@ function Header() {
         </div>
 
         <div className="luxury-actions">
-          <PortfolioButton onClick={() => scrollToSection("projects")}>View My Work</PortfolioButton>
+          <PortfolioButton href={actionHref} onClick={actionHref ? undefined : () => scrollToSection("projects")}>{actionLabel}</PortfolioButton>
           <button
             className="luxury-menu"
             onClick={() => setIsOpen((value) => !value)}
@@ -61,3 +68,7 @@ function Header() {
 }
 
 export default Header;
+
+
+
+
