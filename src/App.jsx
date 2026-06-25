@@ -10,13 +10,20 @@ import AuraCaseStudy from "./components/AuraCaseStudy.jsx";
 import TripzyCaseStudy from "./components/TripzyCaseStudy.jsx";
 
 const portfolioHashes = ["#home", "#about", "#skills", "#projects", "#contact"];
+const basePath = import.meta.env.BASE_URL;
 
 const getInitialRoute = () => {
-  if (window.location.hash === "#/projects/aura" || window.location.pathname === "/projects/aura") {
+  if (
+    window.location.hash === "#/projects/aura" ||
+    window.location.pathname === `${basePath}projects/aura`
+  ) {
     return "aura";
   }
 
-  if (window.location.hash === "#/projects/tripzy" || window.location.pathname === "/projects/tripzy") {
+  if (
+    window.location.hash === "#/projects/tripzy" ||
+    window.location.pathname === `${basePath}projects/tripzy`
+  ) {
     return "tripzy";
   }
 
@@ -44,8 +51,8 @@ function App() {
       }
 
       if (portfolioHashes.includes(window.location.hash)) {
-        if (window.location.pathname !== "/") {
-          window.history.replaceState(null, "", `/${window.location.hash}`);
+        if (window.location.pathname !== basePath) {
+          window.history.replaceState(null, "", `${basePath}${window.location.hash}`);
         }
         setRoute("home");
       }

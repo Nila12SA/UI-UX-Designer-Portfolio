@@ -97,7 +97,7 @@ function TripzyCaseStudy() {
           <h1>Tripzy - Smart Ride Booking Mobile App</h1>
           <div className="tripzy-actions">
             <PortfolioButton href="#tripzy-preview">View Figma Design</PortfolioButton>
-            <PortfolioButton href="/#projects" variant="secondary">
+            <PortfolioButton href="#projects" variant="secondary">
               Back to Portfolio
             </PortfolioButton>
           </div>

@@ -26,7 +26,7 @@ function Header({ actionHref, actionLabel = "View My Work", links = navLinks }) 
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
     } else {
-      window.location.href = `/#${id}`;
+      window.location.href = `${import.meta.env.BASE_URL}#${id}`;
     }
 
     setIsOpen(false);

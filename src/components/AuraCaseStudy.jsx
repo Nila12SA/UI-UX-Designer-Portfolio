@@ -96,7 +96,7 @@ function AuraCaseStudy() {
           <h1>Aura - Stress Relief & Wellness</h1>
           <div className="aura-actions">
             <PortfolioButton href="#aura-project-details">View Figma Design</PortfolioButton>
-            <PortfolioButton href="/#projects" variant="secondary">
+            <PortfolioButton href="#projects" variant="secondary">
               Back to Portfolio
             </PortfolioButton>
           </div>
