@@ -1676,7 +1676,7 @@ footer p {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(26px, 4vw, 72px);
+  gap: clamp(34px, 4.8vw, 86px);
 }
 
 .luxury-links button {
@@ -1701,9 +1701,14 @@ footer p {
 }
 
 .luxury-links button:hover::after,
-.luxury-links button:focus-visible::after {
+.luxury-links button:focus-visible::after,
+.luxury-links button.is-active::after {
   left: 0;
   right: 0;
+}
+
+.luxury-links button.is-active {
+  color: #8a672e;
 }
 
 .luxury-actions {
@@ -1714,8 +1719,8 @@ footer p {
 }
 
 .luxury-button {
-  min-height: 56px;
-  padding: 0 27px;
+  min-height: 58px;
+  padding: 0 31px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1724,12 +1729,13 @@ footer p {
   border-radius: 999px;
   color: #f9efda;
   background:
+    radial-gradient(circle at 50% 0%, rgba(246, 225, 166, 0.18), transparent 42%),
     linear-gradient(180deg, rgba(34, 41, 29, 0.97), rgba(10, 14, 10, 0.98)),
     var(--olive-dark);
   box-shadow:
     inset 0 0 0 2px rgba(246, 225, 166, 0.12),
     0 0 0 4px rgba(17, 21, 15, 0.12),
-    0 16px 26px rgba(25, 29, 19, 0.2);
+    0 18px 30px rgba(25, 29, 19, 0.22);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 0.96rem;
   font-weight: 800;
@@ -1745,9 +1751,12 @@ footer p {
 
 .luxury-button-secondary {
   color: #1d2118;
-  background: rgba(246, 237, 219, 0.62);
+  background:
+    linear-gradient(180deg, rgba(255, 250, 239, 0.76), rgba(236, 225, 203, 0.68));
   border-color: rgba(128, 100, 48, 0.8);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+    0 12px 24px rgba(73, 48, 18, 0.1);
 }
 
 .luxury-button:hover,
@@ -3342,24 +3351,7 @@ footer p {
 }
 
 
-@media (min-width: 1121px) {
-  #aura-features {
-    min-height: calc(100vh - var(--nav-height));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
 
-  #aura-features .aura-feature-grid {
-    flex: 1;
-    align-items: stretch;
-  }
-
-  #aura-features .aura-feature-card {
-    min-height: 100%;
-    align-content: center;
-  }
-}
 @media (max-width: 1120px) {
   .aura-case-study {
     --aura-page-gutter: 24px;
@@ -3447,7 +3439,7 @@ footer p {
 
 .tripzy-case-study {
   --tripzy-gutter: clamp(48px, 6vw, 92px);
-  --tripzy-gap: 30px;
+  --tripzy-gap: 34px;
   --tripzy-ink: #151810;
   --tripzy-gold: #a47025;
   --tripzy-dark: #172016;
@@ -3455,16 +3447,17 @@ footer p {
   position: relative;
   isolation: isolate;
   min-height: 100vh;
-  padding: calc(var(--nav-height) + 22px) var(--tripzy-gutter) 0;
+  padding: 18px var(--tripzy-gutter) 0;
   color: var(--tripzy-ink);
   overflow: hidden;
   background:
-    radial-gradient(circle at 12% 14%, rgba(164, 112, 37, 0.08), transparent 30%),
-    radial-gradient(circle at 90% 22%, rgba(84, 91, 61, 0.1), transparent 27%),
-    linear-gradient(90deg, rgba(136, 90, 28, 0.045) 1px, transparent 1px),
-    linear-gradient(180deg, rgba(136, 90, 28, 0.035) 1px, transparent 1px),
-    linear-gradient(180deg, #f4ead9 0%, #ead9bd 100%);
-  background-size: auto, auto, 220px 220px, 220px 220px, auto;
+    radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.72), transparent 26%),
+    radial-gradient(circle at 78% 18%, rgba(164, 112, 37, 0.1), transparent 24%),
+    radial-gradient(circle at 88% 82%, rgba(74, 88, 58, 0.1), transparent 30%),
+    linear-gradient(90deg, rgba(136, 90, 28, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(136, 90, 28, 0.032) 1px, transparent 1px),
+    linear-gradient(180deg, #f7eddd 0%, #ead9bd 100%);
+  background-size: auto, auto, auto, 220px 220px, 220px 220px, auto;
 }
 
 .tripzy-case-study::before,
@@ -3475,7 +3468,7 @@ footer p {
   width: min(330px, 32vw);
   aspect-ratio: 1;
   background: url("./assets/leafy-branch.png") center / contain no-repeat;
-  filter: sepia(0.22) saturate(0.84) opacity(0.58);
+  filter: sepia(0.22) saturate(0.78) opacity(0.42);
   pointer-events: none;
 }
 
@@ -3505,6 +3498,19 @@ footer p {
 .tripzy-details,
 .tripzy-preview {
   margin-top: var(--tripzy-gap);
+}
+
+.tripzy-section {
+  padding: 28px 0 0;
+}
+
+#tripzy-features {
+  min-height: calc(100vh - var(--nav-height));
+  margin-top: 18px;
+  padding: clamp(52px, 6vh, 76px) 0 clamp(72px, 8vh, 104px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .tripzy-hero {
@@ -3557,11 +3563,11 @@ footer p {
 }
 
 .tripzy-hero h1 {
-  max-width: 560px;
+  max-width: 690px;
   margin: 0;
   color: #11140d;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.9rem, 4.75vw, 4.35rem);
+  font-size: clamp(3.1rem, 5.05vw, 5rem);
   font-weight: 500;
   line-height: 1.01;
   letter-spacing: 0;
@@ -3577,16 +3583,17 @@ footer p {
 }
 
 .tripzy-actions {
-  margin-top: 16px;
+  margin-top: 18px;
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 22px;
 }
 
 .tripzy-overview-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px 22px;
+  max-width: 1260px;
+  gap: 24px 28px;
 }
 
 .tripzy-info-card,
@@ -3594,38 +3601,38 @@ footer p {
 .tripzy-details,
 .tripzy-preview {
   position: relative;
-  background:
-    radial-gradient(circle at 18% 22%, rgba(164, 112, 37, 0.08) 0 1px, transparent 2px),
-    radial-gradient(circle at 76% 70%, rgba(84, 72, 40, 0.08) 0 1px, transparent 2px),
-    linear-gradient(145deg, rgba(255, 249, 239, 0.74), rgba(234, 218, 190, 0.56));
-  border: 1px solid var(--tripzy-border);
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 252, 244, 0.94), rgba(239, 227, 204, 0.8));
+  border: 1px solid rgba(164, 112, 37, 0.48);
   border-radius: 8px;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.58),
-    0 12px 26px rgba(73, 48, 18, 0.1);
+    inset 0 1px 0 rgba(255, 255, 255, 0.76),
+    0 18px 38px rgba(73, 48, 18, 0.11);
 }
 
 .tripzy-info-card {
-  min-height: 128px;
-  padding: 16px 26px;
+  min-height: 158px;
+  padding: 28px 36px;
   display: grid;
-  grid-template-columns: 54px 1fr;
-  gap: 18px;
+  grid-template-columns: 58px 1fr;
+  gap: 24px;
+  align-items: start;
 }
 
-.tripzy-info-card::after,
-.tripzy-feature-card::after,
-.tripzy-details::after,
-.tripzy-preview::after {
+
+.tripzy-info-card::before {
   content: "";
   position: absolute;
-  right: 18px;
-  bottom: 14px;
-  width: 74px;
-  height: 74px;
-  background: url("./assets/leafy-branch.png") center / contain no-repeat;
-  filter: sepia(0.42) saturate(0.72) opacity(0.58);
+  inset: 0;
+  border-top: 3px solid rgba(164, 112, 37, 0.26);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), transparent 42%);
   pointer-events: none;
+}
+
+.tripzy-info-card > div {
+  position: relative;
+  z-index: 1;
+  max-width: 56ch;
 }
 
 .tripzy-number,
@@ -3638,15 +3645,18 @@ footer p {
   border: 1px solid rgba(222, 183, 92, 0.86);
   background: var(--tripzy-dark);
   box-shadow:
-    0 0 0 4px rgba(164, 112, 37, 0.13),
+    0 0 0 5px rgba(164, 112, 37, 0.12),
+    0 10px 18px rgba(32, 28, 17, 0.14),
     inset 0 0 14px rgba(222, 183, 92, 0.18);
 }
 
 .tripzy-number {
-  width: 50px;
-  height: 50px;
+  position: relative;
+  z-index: 1;
+  width: 58px;
+  height: 58px;
   border-radius: 8px;
-  font-size: 1.12rem;
+  font-size: 1.2rem;
   font-weight: 800;
 }
 
@@ -3663,8 +3673,8 @@ footer p {
 }
 
 .tripzy-info-card h2 {
-  margin-bottom: 7px;
-  font-size: 1.28rem;
+  margin-bottom: 10px;
+  font-size: 1.56rem;
 }
 
 .tripzy-info-card p,
@@ -3674,8 +3684,8 @@ footer p {
 .tripzy-preview p {
   margin: 0;
   color: #26261f;
-  font-size: 0.82rem;
-  line-height: 1.45;
+  font-size: 1rem;
+  line-height: 1.62;
 }
 
 .tripzy-info-card ul {
@@ -3684,10 +3694,10 @@ footer p {
 }
 
 .tripzy-section-title {
-  margin: -8px 0 20px;
+  margin: -4px 0 clamp(34px, 4.5vh, 56px);
   color: var(--tripzy-ink);
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.65rem, 2.8vw, 2.25rem);
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
   font-weight: 500;
   line-height: 1.12;
   text-align: center;
@@ -3697,12 +3707,12 @@ footer p {
 .tripzy-feature-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  gap: clamp(24px, 2.8vw, 36px);
 }
 
 .tripzy-feature-card {
-  min-height: 218px;
-  padding: 22px 20px 28px;
+  min-height: clamp(300px, 38vh, 410px);
+  padding: clamp(44px, 5vh, 68px) 34px clamp(46px, 5.6vh, 74px);
   display: grid;
   justify-items: center;
   align-content: start;
@@ -3727,16 +3737,16 @@ footer p {
 }
 
 .tripzy-feature-card h3 {
-  min-height: 42px;
+  min-height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 1.18rem;
 }
 
 .tripzy-feature-card p {
-  margin-top: 14px;
-  font-size: 0.84rem;
+  margin-top: 16px;
+  font-size: 0.98rem;
 }
 
 .tripzy-process-line {
@@ -3809,7 +3819,7 @@ footer p {
 }
 
 .tripzy-page-footer {
-  margin-top: 28px;
+  margin-top: 38px;
   padding: 24px 0 30px;
   color: #5f5a4b;
   font-family: Georgia, "Times New Roman", serif;
@@ -3837,15 +3847,67 @@ footer p {
   }
 }
 
+@media (min-width: 1121px) and (max-height: 980px) {
+  .tripzy-case-study {
+    padding-top: 18px;
+  }
+
+  .tripzy-hero h1 {
+    max-width: 620px;
+    font-size: clamp(2.8rem, 4.6vw, 4.25rem);
+    line-height: 1;
+  }
+
+  .tripzy-hero h1::after {
+    margin-top: 8px;
+  }
+
+  .tripzy-actions {
+    margin-top: 18px;
+  }
+
+  .tripzy-hero .tripzy-overview-grid {
+    margin-top: 18px;
+  }
+
+  .tripzy-overview-grid {
+    gap: 20px 24px;
+  }
+
+  .tripzy-info-card {
+    min-height: 136px;
+    padding: 22px 28px;
+    grid-template-columns: 52px 1fr;
+    gap: 24px;
+  }
+
+  .tripzy-number {
+    width: 52px;
+    height: 52px;
+    font-size: 1.08rem;
+  }
+
+  .tripzy-info-card h2 {
+    margin-bottom: 8px;
+    font-size: 1.36rem;
+  }
+
+  .tripzy-info-card p,
+  .tripzy-info-card li {
+    font-size: 0.92rem;
+    line-height: 1.58;
+  }
+}
+
 @media (max-width: 720px) {
   .tripzy-case-study {
     --tripzy-gutter: 16px;
     --tripzy-gap: 26px;
-    padding-top: calc(var(--nav-height) + 36px);
+    padding-top: 18px;
   }
 
   .tripzy-hero h1 {
-    font-size: clamp(2.7rem, 14vw, 4rem);
+    font-size: clamp(3rem, 14vw, 4.45rem);
   }
 
   .tripzy-actions,
@@ -3861,12 +3923,13 @@ footer p {
 
   .tripzy-info-card {
     grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 24px;
+    gap: 20px;
+    padding: 30px;
   }
 
   .tripzy-feature-card {
     min-height: auto;
+    padding: 34px 28px 38px;
   }
 
   .tripzy-details,
@@ -3875,5 +3938,1093 @@ footer p {
   }
 }
 
+.bloomcraft-case-study {
+  --bloomcraft-gutter: clamp(28px, 7vw, 122px);
+  --bloomcraft-gap: 34px;
+  --bloomcraft-ink: #171b12;
+  --bloomcraft-rose: #8c3f55;
+  --bloomcraft-pink: #d78b9c;
+  --bloomcraft-green: #627055;
+  --bloomcraft-gold: #9a743a;
+  --bloomcraft-border: rgba(142, 96, 54, 0.4);
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  padding: calc(var(--nav-height) + 34px) var(--bloomcraft-gutter) 0;
+  color: var(--bloomcraft-ink);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.7), transparent 26%),
+    radial-gradient(circle at 78% 14%, rgba(215, 139, 156, 0.14), transparent 25%),
+    radial-gradient(circle at 88% 78%, rgba(98, 112, 85, 0.13), transparent 30%),
+    linear-gradient(90deg, rgba(111, 84, 48, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(111, 84, 48, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, #f8efe4 0%, #eadbc4 100%);
+  background-size: auto, auto, auto, 220px 220px, 220px 220px, auto;
+}
 
+.bloomcraft-case-study::before,
+.bloomcraft-case-study::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: min(340px, 34vw);
+  aspect-ratio: 1;
+  background: url("./assets/leafy-branch.png") center / contain no-repeat;
+  filter: sepia(0.28) saturate(0.76) opacity(0.38);
+  pointer-events: none;
+}
+
+.bloomcraft-case-study::before {
+  left: -128px;
+  top: 360px;
+  transform: rotate(20deg);
+}
+
+.bloomcraft-case-study::after {
+  right: -100px;
+  top: 100px;
+  transform: rotate(202deg);
+}
+
+.bloomcraft-hero,
+.bloomcraft-overview-grid,
+.bloomcraft-section,
+.bloomcraft-details,
+.bloomcraft-preview,
+.bloomcraft-page-footer {
+  position: relative;
+  width: 100%;
+  scroll-margin-top: calc(var(--nav-height) + 10px);
+}
+
+.bloomcraft-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  min-height: 360px;
+}
+
+.bloomcraft-hero-copy {
+  max-width: 690px;
+}
+
+.bloomcraft-kicker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 14px;
+  color: var(--bloomcraft-rose);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.bloomcraft-kicker::before,
+.bloomcraft-kicker::after {
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: rgba(140, 63, 85, 0.62);
+}
+
+.bloomcraft-hero .bloomcraft-kicker::before {
+  width: 18px;
+}
+
+.bloomcraft-hero .bloomcraft-kicker::after {
+  width: min(180px, 18vw);
+}
+
+.bloomcraft-hero h1,
+.bloomcraft-section-title,
+.bloomcraft-info-card h2,
+.bloomcraft-feature-card h3,
+.bloomcraft-process-step h3,
+.bloomcraft-details h2,
+.bloomcraft-preview h2 {
+  margin: 0;
+  color: var(--bloomcraft-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  line-height: 1.14;
+  letter-spacing: 0;
+}
+
+.bloomcraft-hero h1 {
+  max-width: 640px;
+  font-size: clamp(3.1rem, 5.1vw, 5rem);
+  line-height: 1.02;
+}
+
+.bloomcraft-hero h1::after {
+  content: "";
+  width: min(430px, 72%);
+  height: 1px;
+  margin-top: 14px;
+  display: block;
+  background: linear-gradient(90deg, rgba(140, 63, 85, 0.74), rgba(140, 63, 85, 0.08));
+}
+
+.bloomcraft-actions {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.bloomcraft-overview-grid,
+.bloomcraft-section,
+.bloomcraft-details,
+.bloomcraft-preview {
+  margin-top: var(--bloomcraft-gap);
+}
+
+.bloomcraft-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 28px;
+}
+
+.bloomcraft-info-card,
+.bloomcraft-feature-card,
+.bloomcraft-process-step,
+.bloomcraft-details,
+.bloomcraft-preview {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 252, 244, 0.94), rgba(238, 226, 204, 0.8));
+  border: 1px solid var(--bloomcraft-border);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.76),
+    0 18px 38px rgba(63, 42, 20, 0.1);
+}
+
+.bloomcraft-info-card {
+  min-height: 172px;
+  padding: 28px 34px;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 22px;
+}
+
+.bloomcraft-info-card::before,
+.bloomcraft-feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-top: 3px solid rgba(140, 63, 85, 0.38);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.52), transparent 42%);
+  pointer-events: none;
+}
+
+.bloomcraft-info-card:nth-child(2)::before,
+.bloomcraft-feature-card:nth-child(2)::before {
+  border-top-color: rgba(154, 116, 58, 0.5);
+}
+
+.bloomcraft-info-card:nth-child(3)::before,
+.bloomcraft-feature-card:nth-child(3)::before {
+  border-top-color: rgba(98, 112, 85, 0.55);
+}
+
+.bloomcraft-info-card:nth-child(4)::before,
+.bloomcraft-feature-card:nth-child(4)::before {
+  border-top-color: rgba(140, 63, 85, 0.5);
+}
+
+.bloomcraft-info-card > div,
+.bloomcraft-feature-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.bloomcraft-number,
+.bloomcraft-feature-icon,
+.bloomcraft-process-step span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  color: #fff6ec;
+  font-family: Georgia, "Times New Roman", serif;
+  background: var(--bloomcraft-rose);
+  border: 1px solid rgba(236, 187, 149, 0.78);
+  box-shadow:
+    0 0 0 5px rgba(140, 63, 85, 0.1),
+    0 10px 18px rgba(32, 28, 17, 0.12),
+    inset 0 0 14px rgba(255, 226, 202, 0.18);
+}
+
+.bloomcraft-number {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+
+.bloomcraft-info-card h2 {
+  margin-bottom: 10px;
+  font-size: 1.44rem;
+}
+
+.bloomcraft-info-card p,
+.bloomcraft-info-card li,
+.bloomcraft-feature-card p,
+.bloomcraft-details li,
+.bloomcraft-preview p {
+  margin: 0;
+  color: #2d2b23;
+  font-size: 0.98rem;
+  line-height: 1.62;
+}
+
+.bloomcraft-info-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.bloomcraft-section {
+  padding: 28px 0 0;
+}
+#bloomcraft-features {
+  min-height: calc(100vh - var(--nav-height));
+  padding: clamp(52px, 6vh, 76px) 0 clamp(72px, 8vh, 104px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.bloomcraft-section-title {
+  margin: -4px 0 clamp(34px, 4.5vh, 56px);
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  text-align: center;
+}
+
+.bloomcraft-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(24px, 2.8vw, 36px);
+}
+
+.bloomcraft-feature-card {
+  min-height: clamp(300px, 38vh, 410px);
+  padding: clamp(44px, 5vh, 68px) 34px clamp(46px, 5.6vh, 74px);
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  text-align: center;
+}
+
+.bloomcraft-feature-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  color: #ffe2d3;
+}
+
+.bloomcraft-feature-card h3 {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.12rem;
+}
+
+.bloomcraft-feature-card p {
+  margin-top: 14px;
+  font-size: 0.96rem;
+}
+
+.bloomcraft-process-section {
+  padding-bottom: 2px;
+}
+
+.bloomcraft-process-line {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.bloomcraft-process-step {
+  min-height: 152px;
+  padding: 26px 14px 24px;
+  display: grid;
+  align-content: space-between;
+  justify-items: center;
+  text-align: center;
+}
+
+.bloomcraft-process-step span {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.bloomcraft-process-step h3 {
+  max-width: 128px;
+  font-size: 1rem;
+}
+
+.bloomcraft-details,
+.bloomcraft-preview {
+  padding: 34px 38px 38px;
+}
+
+.bloomcraft-details h2,
+.bloomcraft-preview h2 {
+  margin: -4px 0 12px;
+  font-size: clamp(1.8rem, 3vw, 2.28rem);
+}
+
+.bloomcraft-details ul {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.bloomcraft-details li + li {
+  margin-top: 8px;
+}
+
+.bloomcraft-details li::marker {
+  color: var(--bloomcraft-rose);
+}
+
+.bloomcraft-preview .luxury-button {
+  margin-top: 22px;
+}
+
+.bloomcraft-page-footer {
+  margin-top: 38px;
+  padding: 24px 0 30px;
+  color: #5f5a4b;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.88rem;
+  text-align: center;
+  border-top: 1px solid rgba(140, 63, 85, 0.34);
+}
+
+@media (max-width: 1120px) {
+  .bloomcraft-case-study {
+    --bloomcraft-gutter: 28px;
+  }
+
+  .bloomcraft-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .bloomcraft-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bloomcraft-process-line {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+@media (max-width: 720px) {
+  .bloomcraft-case-study {
+    --bloomcraft-gutter: 16px;
+    --bloomcraft-gap: 26px;
+    padding-top: calc(var(--nav-height) + 20px);
+  }
+
+  .bloomcraft-hero {
+    gap: 28px;
+  }
+
+  .bloomcraft-hero h1 {
+    font-size: clamp(2.85rem, 13vw, 4.2rem);
+  }
+
+  .bloomcraft-actions,
+  .bloomcraft-actions .luxury-button {
+    width: 100%;
+  }
+
+  .bloomcraft-overview-grid,
+  .bloomcraft-feature-grid,
+  .bloomcraft-process-line {
+    grid-template-columns: 1fr;
+  }
+
+  .bloomcraft-info-card {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 28px;
+  }
+
+  .bloomcraft-feature-card {
+    min-height: auto;
+    padding: 34px 28px 38px;
+  }
+
+
+  .bloomcraft-details,
+  .bloomcraft-preview {
+    padding: 24px;
+  }
+}
+
+
+
+
+
+
+
+
+/* Shared Tripzy-inspired case study styling for Aura and BloomCraft */
+.aura-case-study,
+.bloomcraft-case-study {
+  --shared-case-gutter: clamp(48px, 6vw, 92px);
+  --shared-case-gap: 34px;
+  --shared-case-ink: #151810;
+  --shared-case-gold: #a47025;
+  --shared-case-dark: #172016;
+  --shared-case-border: rgba(164, 112, 37, 0.48);
+  min-height: 100vh;
+  color: var(--shared-case-ink);
+  background:
+    radial-gradient(circle at 16% 18%, rgba(255, 255, 255, 0.72), transparent 26%),
+    radial-gradient(circle at 78% 18%, rgba(164, 112, 37, 0.1), transparent 24%),
+    radial-gradient(circle at 88% 82%, rgba(74, 88, 58, 0.1), transparent 30%),
+    linear-gradient(90deg, rgba(136, 90, 28, 0.04) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(136, 90, 28, 0.032) 1px, transparent 1px),
+    linear-gradient(180deg, #f7eddd 0%, #ead9bd 100%);
+  background-size: auto, auto, auto, 220px 220px, 220px 220px, auto;
+}
+
+.aura-case-study {
+  --aura-page-gutter: var(--shared-case-gutter);
+  --aura-section-gap: var(--shared-case-gap);
+  --aura-card-border: var(--shared-case-border);
+  --aura-gold: var(--shared-case-gold);
+  padding: calc(var(--nav-height) - 18px) 0 0;
+}
+
+.bloomcraft-case-study {
+  --bloomcraft-gutter: var(--shared-case-gutter);
+  --bloomcraft-gap: var(--shared-case-gap);
+  --bloomcraft-ink: var(--shared-case-ink);
+  --bloomcraft-rose: var(--shared-case-gold);
+  --bloomcraft-pink: #e9cf8a;
+  --bloomcraft-green: #4a583a;
+  --bloomcraft-gold: var(--shared-case-gold);
+  --bloomcraft-border: var(--shared-case-border);
+  padding-top: calc(var(--nav-height) - 18px);
+}
+
+.aura-case-study::before,
+.aura-case-study::after,
+.bloomcraft-case-study::before,
+.bloomcraft-case-study::after {
+  filter: sepia(0.22) saturate(0.78) opacity(0.42);
+}
+
+.aura-kicker,
+.bloomcraft-kicker {
+  justify-content: center;
+  gap: 14px;
+  margin: 0 0 12px;
+  color: var(--shared-case-gold);
+  font-size: 0.86rem;
+  letter-spacing: 0.14em;
+}
+
+.aura-hero .aura-kicker,
+.bloomcraft-hero .bloomcraft-kicker {
+  justify-content: flex-start;
+}
+
+.aura-kicker::before,
+.aura-kicker::after,
+.bloomcraft-kicker::before,
+.bloomcraft-kicker::after {
+  content: "";
+  width: 42px;
+  height: 1px;
+  background: rgba(164, 112, 37, 0.66);
+}
+
+.aura-hero .aura-kicker::before,
+.bloomcraft-hero .bloomcraft-kicker::before {
+  width: 18px;
+}
+
+.aura-hero .aura-kicker::after,
+.bloomcraft-hero .bloomcraft-kicker::after {
+  width: min(190px, 18vw);
+}
+
+.aura-kicker span::after {
+  content: none;
+}
+
+.aura-hero,
+.bloomcraft-hero {
+  min-height: 360px;
+  scroll-margin-top: calc(var(--nav-height) + 8px);
+}
+
+.aura-hero h1,
+.bloomcraft-hero h1 {
+  max-width: 690px;
+  color: #11140d;
+  font-size: clamp(3.1rem, 5.05vw, 5rem);
+  line-height: 1.01;
+}
+
+.aura-hero h1::after,
+.bloomcraft-hero h1::after {
+  content: "";
+  width: min(420px, 72%);
+  height: 1px;
+  margin-top: 12px;
+  display: block;
+  background: linear-gradient(90deg, rgba(164, 112, 37, 0.82), rgba(164, 112, 37, 0.08));
+}
+
+.aura-actions,
+.bloomcraft-actions {
+  margin-top: 18px;
+  gap: 22px;
+}
+
+.aura-overview-grid,
+.bloomcraft-overview-grid {
+  gap: 24px 28px;
+}
+
+.aura-info-card,
+.aura-feature-card,
+.aura-details,
+.bloomcraft-info-card,
+.bloomcraft-feature-card,
+.bloomcraft-details,
+.bloomcraft-preview {
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 252, 244, 0.94), rgba(239, 227, 204, 0.8));
+  border: 1px solid var(--shared-case-border);
+  border-radius: 8px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.76),
+    0 18px 38px rgba(73, 48, 18, 0.11);
+}
+
+.aura-info-card,
+.bloomcraft-info-card {
+  min-height: 158px;
+  padding: 28px 36px;
+  grid-template-columns: 58px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.aura-info-card::before,
+.bloomcraft-info-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-top: 3px solid rgba(164, 112, 37, 0.26);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), transparent 42%);
+  pointer-events: none;
+}
+
+.aura-info-card::after,
+.aura-details::before,
+.aura-details::after {
+  content: none;
+}
+
+.aura-info-card > div,
+.bloomcraft-info-card > div {
+  position: relative;
+  z-index: 1;
+  max-width: 56ch;
+}
+
+.aura-number,
+.aura-feature-icon,
+.aura-process-step span,
+.bloomcraft-number,
+.bloomcraft-feature-icon,
+.bloomcraft-process-step span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  color: #f4ead9;
+  font-family: Georgia, "Times New Roman", serif;
+  border: 1px solid rgba(222, 183, 92, 0.86);
+  background: var(--shared-case-dark);
+  box-shadow:
+    0 0 0 5px rgba(164, 112, 37, 0.12),
+    0 10px 18px rgba(32, 28, 17, 0.14),
+    inset 0 0 14px rgba(222, 183, 92, 0.18);
+}
+
+.aura-number,
+.bloomcraft-number {
+  width: 58px;
+  height: 58px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.aura-info-card h2,
+.bloomcraft-info-card h2 {
+  margin-bottom: 10px;
+  font-size: 1.56rem;
+}
+
+.aura-info-card p,
+.aura-info-card li,
+.aura-feature-card p,
+.aura-details li,
+.bloomcraft-info-card p,
+.bloomcraft-info-card li,
+.bloomcraft-feature-card p,
+.bloomcraft-details li,
+.bloomcraft-preview p {
+  color: #26261f;
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+#aura-features,
+#bloomcraft-features {
+  min-height: calc(100vh - var(--nav-height));
+  padding: clamp(52px, 6vh, 76px) 0 clamp(72px, 8vh, 104px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.aura-section,
+.bloomcraft-section {
+  padding: 28px 0 0;
+}
+
+.aura-section-title,
+.bloomcraft-section-title {
+  margin: -4px 0 clamp(34px, 4.5vh, 56px);
+  color: var(--shared-case-ink);
+  font-size: clamp(2rem, 3.2vw, 2.7rem);
+  line-height: 1.12;
+  text-align: center;
+}
+
+.aura-feature-grid,
+.bloomcraft-feature-grid {
+  gap: clamp(24px, 2.8vw, 36px);
+}
+
+.aura-feature-card,
+.bloomcraft-feature-card {
+  min-height: clamp(300px, 38vh, 410px);
+  padding: clamp(44px, 5vh, 68px) 34px clamp(46px, 5.6vh, 74px);
+  align-content: start;
+}
+
+.aura-feature-card::before,
+.bloomcraft-feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px dashed rgba(164, 112, 37, 0.3);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.aura-feature-card::after {
+  content: none;
+}
+
+.aura-feature-icon,
+.bloomcraft-feature-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  color: #e9cf8a;
+}
+
+.aura-feature-card h3,
+.bloomcraft-feature-card h3 {
+  min-height: 48px;
+  font-size: 1.18rem;
+}
+
+.aura-feature-card p,
+.bloomcraft-feature-card p {
+  margin-top: 16px;
+  font-size: 0.98rem;
+}
+
+.aura-process-line,
+.bloomcraft-process-line {
+  position: relative;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.aura-process-line::before {
+  border-top: 2px dotted rgba(164, 112, 37, 0.72);
+}
+
+.bloomcraft-process-line::before {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 32px;
+  border-top: 2px dotted rgba(164, 112, 37, 0.72);
+}
+
+.aura-process-step,
+.bloomcraft-process-step {
+  position: relative;
+  z-index: 1;
+  min-height: auto;
+  padding: 0;
+  gap: 12px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.aura-process-step span,
+.bloomcraft-process-step span {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  font-size: 1.48rem;
+  font-weight: 800;
+  outline: 4px double rgba(164, 112, 37, 0.72);
+  outline-offset: 4px;
+}
+
+.aura-process-step h3,
+.bloomcraft-process-step h3 {
+  max-width: 130px;
+  font-size: 0.95rem;
+}
+
+.aura-details,
+.bloomcraft-details,
+.bloomcraft-preview {
+  padding: 24px 34px 28px;
+}
+
+.aura-details h2,
+.bloomcraft-details h2,
+.bloomcraft-preview h2 {
+  margin: -4px 0 12px;
+  font-size: clamp(1.8rem, 3vw, 2.25rem);
+}
+
+.aura-details li::marker,
+.bloomcraft-details li::marker {
+  color: var(--shared-case-gold);
+}
+
+.aura-page-footer,
+.bloomcraft-page-footer {
+  margin-top: 38px;
+  padding: 24px 0 30px;
+  color: #5f5a4b;
+  background: transparent;
+  border-top: 1px solid rgba(164, 112, 37, 0.44);
+  box-shadow: none;
+}
+
+@media (max-width: 1120px) {
+  .aura-process-line::before,
+  .bloomcraft-process-line::before {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .aura-case-study,
+  .bloomcraft-case-study {
+    --shared-case-gutter: 16px;
+    --shared-case-gap: 26px;
+  }
+
+  .aura-hero h1,
+  .bloomcraft-hero h1 {
+    font-size: clamp(3rem, 14vw, 4.45rem);
+  }
+
+  .aura-info-card,
+  .bloomcraft-info-card {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 30px;
+  }
+
+  .aura-feature-card,
+  .bloomcraft-feature-card {
+    min-height: auto;
+    padding: 34px 28px 38px;
+  }
+
+  .aura-details,
+  .bloomcraft-details,
+  .bloomcraft-preview {
+    padding: 24px;
+  }
+}
+
+/* Match Aura and BloomCraft spacing to Tripzy case study exactly */
+.aura-case-study,
+.bloomcraft-case-study {
+  --shared-case-gutter: clamp(48px, 6vw, 92px);
+  --shared-case-gap: 34px;
+  padding: calc(var(--nav-height) - 18px) var(--shared-case-gutter) 0;
+}
+
+.aura-hero,
+.aura-section,
+.aura-details,
+.aura-page-footer,
+.bloomcraft-hero,
+.bloomcraft-overview-grid,
+.bloomcraft-section,
+.bloomcraft-details,
+.bloomcraft-preview,
+.bloomcraft-page-footer {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  scroll-margin-top: calc(var(--nav-height) + 8px);
+}
+
+.aura-section,
+.aura-details,
+.bloomcraft-section,
+.bloomcraft-details,
+.bloomcraft-preview {
+  margin-top: var(--shared-case-gap);
+}
+
+.aura-hero .aura-overview-grid {
+  margin-top: 22px;
+}
+
+@media (max-width: 1120px) {
+  .aura-case-study,
+  .bloomcraft-case-study {
+    --shared-case-gutter: 28px;
+  }
+}
+
+@media (max-width: 720px) {
+  .aura-case-study,
+  .bloomcraft-case-study {
+    --shared-case-gutter: 16px;
+    --shared-case-gap: 26px;
+    padding-top: calc(var(--nav-height) + 14px);
+  }
+}
+
+/* Move BloomCraft overview cards higher on the page */
+.bloomcraft-hero {
+  min-height: 250px;
+}
+
+.bloomcraft-overview-grid {
+  margin-top: 18px;
+}
+
+@media (max-width: 720px) {
+  .bloomcraft-hero {
+    min-height: 300px;
+  }
+}
+
+/* Tighten BloomCraft hero so overview cards sit directly under the buttons */
+.bloomcraft-hero {
+  display: block;
+  min-height: auto;
+}
+
+.bloomcraft-actions {
+  margin-top: 14px;
+}
+
+.bloomcraft-overview-grid {
+  margin-top: 10px;
+}
+
+@media (max-width: 720px) {
+  .bloomcraft-hero {
+    min-height: auto;
+  }
+}
+
+/* Final BloomCraft whitespace cleanup */
+.bloomcraft-hero {
+  padding-bottom: 0;
+}
+
+.bloomcraft-hero-copy {
+  margin-bottom: 0;
+}
+
+.bloomcraft-actions {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.bloomcraft-overview-grid {
+  margin-top: -6px;
+}
+
+@media (max-width: 720px) {
+  .bloomcraft-overview-grid {
+    margin-top: 14px;
+  }
+}
+
+
+
+/* Keep the Aura wellness title readable below the fixed header */
+.aura-case-study {
+  padding-top: calc(var(--nav-height) + 28px);
+}
+
+
+.aura-hero h1 {
+  max-width: 1120px;
+  font-size: clamp(2.85rem, 4.1vw, 4.35rem);
+  line-height: 1.06;
+  text-wrap: balance;
+}
+
+@media (max-width: 720px) {
+  .aura-case-study {
+    padding-top: calc(var(--nav-height) + 18px);
+  }
+
+  .aura-hero h1 {
+    font-size: clamp(2.45rem, 11.5vw, 3.5rem);
+  }
+}
+
+
+
+
+
+
+
+
+
+/* BloomCraft uses the same hero structure and spacing as Tripzy */
+.bloomcraft-case-study {
+  padding-top: 18px;
+}
+
+.bloomcraft-hero {
+  display: block;
+  min-height: auto;
+  padding-bottom: 0;
+}
+
+.bloomcraft-hero > .bloomcraft-kicker,
+.bloomcraft-hero > h1,
+.bloomcraft-hero > .bloomcraft-actions {
+  max-width: 760px;
+}
+
+.bloomcraft-hero h1 {
+  max-width: 690px;
+  font-size: clamp(3.1rem, 5.05vw, 5rem);
+  line-height: 1.01;
+}
+
+.bloomcraft-actions {
+  margin-top: 18px;
+  margin-bottom: 0;
+}
+
+.bloomcraft-overview-grid {
+  max-width: 1260px;
+  margin-top: 22px;
+}
+
+@media (min-width: 1121px) and (max-height: 980px) {
+  .bloomcraft-case-study {
+    padding-top: 18px;
+  }
+
+  .bloomcraft-hero h1 {
+    max-width: 620px;
+    font-size: clamp(2.8rem, 4.6vw, 4.25rem);
+    line-height: 1;
+  }
+
+  .bloomcraft-hero h1::after {
+    margin-top: 8px;
+  }
+
+  .bloomcraft-actions {
+    margin-top: 18px;
+  }
+
+  .bloomcraft-overview-grid {
+    margin-top: 18px;
+    gap: 20px 24px;
+  }
+
+  .bloomcraft-info-card {
+    min-height: 136px;
+    padding: 22px 28px;
+    grid-template-columns: 52px 1fr;
+    gap: 24px;
+  }
+
+  .bloomcraft-number {
+    width: 52px;
+    height: 52px;
+    font-size: 1.08rem;
+  }
+
+  .bloomcraft-info-card h2 {
+    margin-bottom: 8px;
+    font-size: 1.36rem;
+  }
+
+  .bloomcraft-info-card p,
+  .bloomcraft-info-card li {
+    font-size: 0.92rem;
+    line-height: 1.58;
+  }
+}
+
+@media (max-width: 720px) {
+  .bloomcraft-case-study {
+    padding-top: 18px;
+  }
+
+  .bloomcraft-hero h1 {
+    font-size: clamp(3rem, 14vw, 4.45rem);
+  }
+
+  .bloomcraft-overview-grid {
+    margin-top: 18px;
+  }
+}
 

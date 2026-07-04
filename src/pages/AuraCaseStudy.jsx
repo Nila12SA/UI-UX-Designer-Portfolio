@@ -1,12 +1,11 @@
 import { BarChart3, Flower2, Leaf, Moon } from "lucide-react";
-import Header from "./Header.jsx";
-import PortfolioButton from "./Buttons.jsx";
+import Header from "../components/Header.jsx";
+import PortfolioButton from "../components/Buttons.jsx";
 
 const caseNavLinks = [
   { id: "aura-overview", label: "Overview" },
   { id: "aura-features", label: "Features" },
   { id: "aura-process", label: "Process" },
-  { id: "contact", label: "Contact" },
 ];
 
 const overviewItems = [
@@ -89,14 +88,14 @@ function AuraKicker({ children }) {
 function AuraCaseStudy() {
   return (
     <>
-      <Header links={caseNavLinks} />
+      <Header activeId="aura-overview" links={caseNavLinks} />
       <main className="case-study aura-case-study">
         <section className="aura-hero" id="aura-overview">
           <AuraKicker>Wellness App Case Study</AuraKicker>
           <h1>Aura - Stress Relief & Wellness</h1>
           <div className="aura-actions">
             <PortfolioButton href="#aura-project-details">View Figma Design</PortfolioButton>
-            <PortfolioButton href="#projects" variant="secondary">
+            <PortfolioButton href={`${import.meta.env.BASE_URL}#projects`} variant="secondary">
               Back to Portfolio
             </PortfolioButton>
           </div>
@@ -167,5 +166,8 @@ function AuraCaseStudy() {
 }
 
 export default AuraCaseStudy;
+
+
+
 
 

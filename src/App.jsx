@@ -6,46 +6,41 @@ import Skills from "./components/Skills.jsx";
 import Projects from "./components/Projects.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
-import AuraCaseStudy from "./components/AuraCaseStudy.jsx";
-import TripzyCaseStudy from "./components/TripzyCaseStudy.jsx";
+import AuraCaseStudy from "./pages/AuraCaseStudy.jsx";
+import TripzyCaseStudy from "./pages/TripzyCaseStudy.jsx";
+import BloomcraftCaseStudy from "./pages/BloomcraftCaseStudy.jsx";
 
-const portfolioHashes = ["#home", "#about", "#skills", "#projects", "#contact"];
 const basePath = import.meta.env.BASE_URL;
-
-const getInitialRoute = () => {
-  if (
-    window.location.hash === "#/projects/aura" ||
-    window.location.pathname === `${basePath}projects/aura`
-  ) {
-    return "aura";
-  }
-
-  if (
-    window.location.hash === "#/projects/tripzy" ||
-    window.location.pathname === `${basePath}projects/tripzy`
-  ) {
-    return "tripzy";
-  }
-
-  return "home";
+const portfolioHashes = ["#home", "#about", "#skills", "#projects", "#contact"];
+const projectRoutes = {
+  aura: "#/projects/aura",
+  tripzy: "#/projects/tripzy",
+  bloomcraft: "#/projects/bloomcraft",
 };
+
+const getProjectRoute = () => {
+  const currentHash = window.location.hash;
+  const currentPath = window.location.pathname;
+
+  return Object.entries(projectRoutes).find(
+    ([slug, hash]) => currentHash === hash || currentPath === `${basePath}projects/${slug}`
+  )?.[0];
+};
+
+const getInitialRoute = () => getProjectRoute() || "home";
 
 function App() {
   const [route, setRoute] = useState(getInitialRoute);
   const isAuraCaseStudy = route === "aura";
   const isTripzyCaseStudy = route === "tripzy";
-  const isCaseStudy = isAuraCaseStudy || isTripzyCaseStudy;
+  const isBloomcraftCaseStudy = route === "bloomcraft";
+  const isCaseStudy = isAuraCaseStudy || isTripzyCaseStudy || isBloomcraftCaseStudy;
 
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === "#/projects/aura") {
-        setRoute("aura");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        return;
-      }
-
-      if (window.location.hash === "#/projects/tripzy") {
-        setRoute("tripzy");
+      const projectRoute = getProjectRoute();
+      if (projectRoute) {
+        setRoute(projectRoute);
         window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }
@@ -63,12 +58,30 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (route !== "home" || !portfolioHashes.includes(window.location.hash)) return;
+    const projectRoute = getProjectRoute();
 
-    window.requestAnimationFrame(() => {
+    if (projectRoute && window.location.hash !== projectRoutes[projectRoute]) {
+      window.history.replaceState(null, "", `${basePath}${projectRoutes[projectRoute]}`);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (route !== "home" || !portfolioHashes.includes(window.location.hash)) return undefined;
+
+    const scrollToHashSection = () => {
       const section = document.getElementById(window.location.hash.slice(1));
       section?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    const frameId = window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(scrollToHashSection);
     });
+    const timeoutId = window.setTimeout(scrollToHashSection, 180);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.clearTimeout(timeoutId);
+    };
   }, [route]);
 
   useEffect(() => {
@@ -100,6 +113,10 @@ function App() {
     return <TripzyCaseStudy />;
   }
 
+  if (isBloomcraftCaseStudy) {
+    return <BloomcraftCaseStudy />;
+  }
+
   return (
     <>
       <Header />
@@ -116,3 +133,4 @@ function App() {
 }
 
 export default App;
+

@@ -5,7 +5,7 @@ const projects = [
     description:
       "Tripzy is a smart ride-booking mobile application designed with accessibility and inclusive user experience in mind.",
     className: "tripzy",
-    route: "#/projects/tripzy",
+    slug: "tripzy",
   },
   {
     title: "Aura",
@@ -13,7 +13,7 @@ const projects = [
     description:
       "Designed a wellness-focused interface to help users manage stress and monitor health indicators.",
     className: "aura",
-    route: "#/projects/aura",
+    slug: "aura",
   },
   {
     title: "BloomCraft",
@@ -21,9 +21,11 @@ const projects = [
     description:
       "Designed an interactive flower selection interface, live bouquet preview section, and elegant floral e-commerce experience.",
     className: "bloomcraft",
-    route: "/projects/bloomcraft",
+    slug: "bloomcraft",
   },
 ];
+
+const getProjectRoute = (slug) => `${import.meta.env.BASE_URL}#/projects/${slug}`;
 
 function Projects() {
   return (
@@ -45,7 +47,11 @@ function Projects() {
                   {project.title} - {project.subtitle}
                 </h3>
                 <p>{project.description}</p>
-                <a href={project.route}>View Case Study</a>
+                {project.slug ? (
+                  <a href={getProjectRoute(project.slug)}>View Case Study</a>
+                ) : (
+                  <span className="project-link-disabled">Coming Soon</span>
+                )}
               </div>
             </article>
           ))}
@@ -56,4 +62,3 @@ function Projects() {
 }
 
 export default Projects;
-

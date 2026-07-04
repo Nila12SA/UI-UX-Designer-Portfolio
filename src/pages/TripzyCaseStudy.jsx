@@ -1,13 +1,11 @@
 import { Accessibility, CarFront, Leaf, UserRound } from "lucide-react";
-import Header from "./Header.jsx";
-import PortfolioButton from "./Buttons.jsx";
+import Header from "../components/Header.jsx";
+import PortfolioButton from "../components/Buttons.jsx";
 
 const tripzyNavLinks = [
   { id: "tripzy-overview", label: "Overview" },
   { id: "tripzy-features", label: "Features" },
   { id: "tripzy-process", label: "Process" },
-  { id: "tripzy-preview", label: "Preview" },
-  { id: "contact", label: "Contact" },
 ];
 
 const overviewItems = [
@@ -90,14 +88,19 @@ function TripzyKicker({ children }) {
 function TripzyCaseStudy() {
   return (
     <>
-      <Header actionHref="#tripzy-preview" actionLabel="View Figma Design" links={tripzyNavLinks} />
+      <Header
+        actionHref="#tripzy-preview"
+        actionLabel="View Figma Design"
+        activeId="tripzy-overview"
+        links={tripzyNavLinks}
+      />
       <main className="tripzy-case-study">
         <section className="tripzy-hero" id="tripzy-overview">
           <TripzyKicker>UI/UX Design Project using Figma</TripzyKicker>
           <h1>Tripzy - Smart Ride Booking Mobile App</h1>
           <div className="tripzy-actions">
             <PortfolioButton href="#tripzy-preview">View Figma Design</PortfolioButton>
-            <PortfolioButton href="#projects" variant="secondary">
+            <PortfolioButton href={`${import.meta.env.BASE_URL}#projects`} variant="secondary">
               Back to Portfolio
             </PortfolioButton>
           </div>
@@ -158,12 +161,6 @@ function TripzyCaseStudy() {
           </ul>
         </section>
 
-        <section className="tripzy-preview" id="tripzy-preview">
-          <TripzyKicker>Figma Design</TripzyKicker>
-          <h2>Design preview area</h2>
-          <p>Key Tripzy mobile app screens from the driver registration and document verification flow.</p>
-        </section>
-
         <p id="contact" className="tripzy-page-footer">
           &copy; 2026 Nilani Subramaniyam. All rights reserved.
         </p>
@@ -173,4 +170,6 @@ function TripzyCaseStudy() {
 }
 
 export default TripzyCaseStudy;
+
+
 

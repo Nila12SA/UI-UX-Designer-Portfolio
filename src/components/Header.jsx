@@ -9,9 +9,12 @@ const navLinks = [
   { id: "contact", label: "Contact" },
 ];
 
-function Header({ actionHref, actionLabel = "View My Work", links = navLinks }) {
+const portfolioSectionIds = new Set(["home", "about", "skills", "projects", "contact"]);
+
+function Header({ actionHref, actionLabel = "View My Work", links = navLinks, activeId }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentActiveId, setCurrentActiveId] = useState(activeId ?? "");
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 18);
@@ -20,11 +23,46 @@ function Header({ actionHref, actionLabel = "View My Work", links = navLinks }) 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setCurrentActiveId(activeId ?? "");
+  }, [activeId]);
+
+  useEffect(() => {
+    const updateActiveLink = () => {
+      const sectionLinks = links
+        .map((link) => ({ link, section: document.getElementById(link.id) }))
+        .filter(({ section }) => section);
+
+      if (!sectionLinks.length) return;
+
+      const scrollMarker = window.scrollY + 160;
+      const activeLink = [...sectionLinks]
+        .reverse()
+        .find(({ section }) => section.offsetTop <= scrollMarker)?.link;
+
+      setCurrentActiveId(activeLink?.id ?? activeId ?? "");
+    };
+
+    updateActiveLink();
+    window.addEventListener("scroll", updateActiveLink, { passive: true });
+    window.addEventListener("resize", updateActiveLink);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveLink);
+      window.removeEventListener("resize", updateActiveLink);
+    };
+  }, [activeId, links]);
+
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
 
     if (section) {
+      setCurrentActiveId(id);
       section.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      if (portfolioSectionIds.has(id)) {
+        window.history.pushState(null, "", `${import.meta.env.BASE_URL}#${id}`);
+      }
     } else {
       window.location.href = `${import.meta.env.BASE_URL}#${id}`;
     }
@@ -43,14 +81,22 @@ function Header({ actionHref, actionLabel = "View My Work", links = navLinks }) 
 
         <div className={`luxury-links ${isOpen ? "is-open" : ""}`}>
           {links.map((link) => (
-            <button key={link.id} onClick={() => scrollToSection(link.id)} type="button">
+            <button
+              aria-current={currentActiveId === link.id ? "page" : undefined}
+              className={currentActiveId === link.id ? "is-active" : undefined}
+              key={link.id}
+              onClick={() => scrollToSection(link.id)}
+              type="button"
+            >
               {link.label}
             </button>
           ))}
         </div>
 
         <div className="luxury-actions">
-          <PortfolioButton href={actionHref} onClick={actionHref ? undefined : () => scrollToSection("projects")}>{actionLabel}</PortfolioButton>
+          <PortfolioButton href={actionHref} onClick={actionHref ? undefined : () => scrollToSection("projects")}>
+            {actionLabel}
+          </PortfolioButton>
           <button
             className="luxury-menu"
             onClick={() => setIsOpen((value) => !value)}
@@ -68,7 +114,3 @@ function Header({ actionHref, actionLabel = "View My Work", links = navLinks }) 
 }
 
 export default Header;
-
-
-
-
