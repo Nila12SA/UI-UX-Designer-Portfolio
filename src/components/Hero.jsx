@@ -19,11 +19,7 @@ function Hero() {
         </h1>
         <div className="title-divider" aria-hidden="true" />
         <p className="luxury-intro">
-          I create clean, accessible, and engaging digital experiences
-          <br />
-          through UX research, wireframing, prototyping, testing,
-          <br />
-          and refined visual design.
+          I create clean, accessible, and engaging digital experiences through UX research, wireframing, prototyping, testing, and refined visual design.
         </p>
         <div className="luxury-hero-actions">
           <PortfolioButton href={cvFile} target="_blank">
