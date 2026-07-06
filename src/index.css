@@ -958,11 +958,11 @@ section {
 }
 
 .skill-card svg {
-  width: 32px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
   position: absolute;
-  top: 22px;
-  color: var(--olive);
+  top: 20px;
+  color: #6f765d;
   transition: transform 0.3s ease;
 }
 

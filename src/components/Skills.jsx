@@ -1,33 +1,34 @@
-const skills = [
-  "UI Design",
-  "UX Research",
-  "Wireframing",
-  "Prototyping",
-  "Figma",
-  "User Testing",
-  "Design Systems",
-  "Responsive Design",
-  "Accessibility Design",
-  "Mobile App Design",
-  "Web Design",
-  "Visual Design",
-];
+import {
+  FaDraftingCompass,
+  FaLayerGroup,
+  FaPalette,
+  FaSearch,
+  FaUniversalAccess,
+  FaVial,
+} from "react-icons/fa";
+import {
+  MdDashboardCustomize,
+  MdDevices,
+  MdPhoneIphone,
+  MdTouchApp,
+  MdWeb,
+} from "react-icons/md";
+import { SiFigma } from "react-icons/si";
 
-const SkillIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <path d="M12 3l7 4v10l-7 4-7-4V7l7-4z" />
-    <path d="M12 8v8" />
-    <path d="M8 10l4-2 4 2" />
-  </svg>
-);
+const skills = [
+  { title: "UI Design", icon: MdDashboardCustomize },
+  { title: "UX Research", icon: FaSearch },
+  { title: "Wireframing", icon: FaDraftingCompass },
+  { title: "Prototyping", icon: MdTouchApp },
+  { title: "Figma", icon: SiFigma },
+  { title: "User Testing", icon: FaVial },
+  { title: "Design Systems", icon: FaLayerGroup },
+  { title: "Responsive Design", icon: MdDevices },
+  { title: "Accessibility Design", icon: FaUniversalAccess },
+  { title: "Mobile App Design", icon: MdPhoneIphone },
+  { title: "Web Design", icon: MdWeb },
+  { title: "Visual Design", icon: FaPalette },
+];
 
 function Skills() {
   return (
@@ -37,10 +38,10 @@ function Skills() {
         <h2 className="section-title">Core Design Capabilities</h2>
 
         <div className="skills-grid">
-          {skills.map((skill) => (
-            <article className="skill-card card" key={skill}>
-              <SkillIcon />
-              <span>{skill}</span>
+          {skills.map(({ title, icon: Icon }) => (
+            <article className="skill-card card" key={title}>
+              <Icon aria-hidden="true" />
+              <span>{title}</span>
             </article>
           ))}
         </div>
