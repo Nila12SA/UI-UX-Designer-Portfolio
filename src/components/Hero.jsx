@@ -1,7 +1,7 @@
 import GoddessVisual from "./GoddessVisual.jsx";
 import PortfolioButton from "./Buttons.jsx";
 import Stats from "./Stats.jsx";
-import cvFile from "../assets/UI-UX Designer.pdf";
+import cvFile from "/UI-UX-Designer-Intern.pdf";
 
 function Hero() {
   const scrollToSection = (id) => {

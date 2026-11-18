@@ -1,307 +1,183 @@
-import { ArrowRight, Check, Compass, Flower2, Palette, ShoppingBag } from "lucide-react";
+import { useEffect } from "react";
+import {
+  ArrowRight,
+  Flower2,
+  Images,
+  LogIn,
+  Palette,
+  ReceiptText,
+  ShoppingBag,
+  Sparkles,
+} from "lucide-react";
 import Header from "../components/Header.jsx";
 import PortfolioButton from "../components/Buttons.jsx";
-import registerScreen from "../assets/Register.png";
-import loginScreen from "../assets/Login.png";
 
-const bloomcraftNavLinks = [
+const base = `${import.meta.env.BASE_URL}bloomcraft/`;
+
+const navLinks = [
   { id: "bloomcraft-overview", label: "Overview" },
-  { id: "bloomcraft-opportunity", label: "Opportunity" },
-  { id: "bloomcraft-research", label: "Research" },
-  { id: "bloomcraft-flow", label: "Flow" },
-  { id: "bloomcraft-ui", label: "UI" },
+  { id: "bloomcraft-journey", label: "Journey" },
+  { id: "bloomcraft-screens", label: "Screens" },
+  { id: "bloomcraft-system", label: "Visual design" },
 ];
 
-const opportunitySteps = [
-  "Browse",
-  "Customize bouquet",
-  "Personalize",
-  "Purchase",
+const projectDetails = [
+  ["Project type", "Floral e-commerce concept"],
+  ["Platform", "Website"],
+  ["Design tool", "Figma"],
+  ["Product focus", "Custom bouquet creation"],
+  ["Screens presented", "Home, login, and registration"],
+];
+
+const journey = [
+  ["01", "Discover the offer", "The homepage introduces a custom bouquet and invites visitors to start building."],
+  ["02", "Understand the process", "How It Works explains flower selection, quantity adjustment, and bouquet preview."],
+  ["03", "Compare price options", "Three price tiers give a quick overview of the bouquet range."],
+  ["04", "Continue to an account", "Visitors can move into the login or registration experience."],
 ];
 
 const designDecisions = [
-  "Custom bouquet selection was introduced to give users more control than a typical pre-made bouquet flow.",
-  "The product selection and preview were designed to help users compare options before committing to a purchase.",
-  "The bouquet-building flow kept decision-making simple by separating the experience into clear stages.",
-  "I used a calm, editorial layout to keep the interface feeling premium while maintaining clarity and ease of use.",
+  [Flower2, "Lead with the custom bouquet", "The homepage headline and Start Building action make the central offer easy to spot."],
+  [Images, "Explain the steps visually", "Three short process captions and flower imagery show how customization is intended to work."],
+  [ReceiptText, "Keep pricing scannable", "Three visible price ranges help visitors compare options without leaving the landing page."],
+  [LogIn, "Keep account entry consistent", "Login and registration share the same floral background, centered form panel, and account links."],
 ];
 
-const learningPoints = [
-  "Competitive analysis helped me spot a clear design opportunity in the floral shopping experience.",
-  "I learned that customization works best when the journey stays simple and guided.",
-  "Designing a flexible product flow requires balancing choice with clarity.",
-  "The final product felt stronger when the interface supported both browsing and personalization without overwhelming the user.",
+const components = [
+  ["Primary navigation", "How It Works, Simple Pricing, Contact Us, and Register"],
+  ["Primary action", "Start Building call to action"],
+  ["Process cards", "Flower selection, quantity adjustment, and bouquet preview"],
+  ["Price cards", "Three bouquet price tiers with image-led presentation"],
+  ["Florist profile", "A featured florist with role and introduction"],
+  ["Account forms", "Shared login and registration layout"],
 ];
 
 function BloomcraftCaseStudy() {
+  useEffect(() => {
+    const previousTitle = document.title;
+    const description = "BloomCraft website UI/UX case study: a custom bouquet landing page with process, pricing, login, and registration screens.";
+    document.title = "BloomCraft Case Study | Nilani Subramaniyam";
+    let meta = document.querySelector('meta[name="description"]');
+    const createdMeta = !meta;
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      document.head.appendChild(meta);
+    }
+    const previousDescription = meta.content;
+    meta.content = description;
+    return () => {
+      document.title = previousTitle;
+      if (createdMeta) meta.remove();
+      else meta.content = previousDescription;
+    };
+  }, []);
+
   return (
     <>
-      <Header
-        actionHref={`${import.meta.env.BASE_URL}#projects`}
-        actionLabel="Back to Portfolio"
-        activeId="bloomcraft-overview"
-        links={bloomcraftNavLinks}
-      />
+      <Header actionHref={`${import.meta.env.BASE_URL}#projects`} actionLabel="Back to Projects" activeId="bloomcraft-overview" links={navLinks} />
       <main className="case-study-shell bloomcraft-shell">
-        <section className="case-study-hero" id="bloomcraft-overview">
+        <section className="case-study-hero bloomcraft-hero" id="bloomcraft-overview">
           <div className="case-study-copy">
-            <p className="case-study-kicker">BloomCraft</p>
-            <h1>Custom bouquet building for a more flexible flower-shopping experience.</h1>
-            <p className="case-study-lead">
-              BloomCraft is a flower bouquet website concept focused on giving users more flexibility when creating
-              arrangements. The experience supports both pre-made bouquets and a custom bouquet builder so users can
-              design something that matches their preferences more closely.
-            </p>
-
+            <p className="case-study-kicker">Floral E-commerce · Website UI/UX</p>
+            <h1>BloomCraft — Simple. Personal. Beautiful.</h1>
+            <p className="case-study-lead">A floral shopping website introducing a custom-bouquet journey, showing how to select flowers, adjust quantities, and preview an arrangement, alongside pricing and account access.</p>
             <div className="case-study-project-meta">
-              <div>
-                <span>Role</span>
-                <strong>UI/UX Designer</strong>
-              </div>
-              <div>
-                <span>Tools</span>
-                <strong>Figma</strong>
-              </div>
-              <div>
-                <span>Project type</span>
-                <strong>Responsive web concept</strong>
-              </div>
+              <div><span>Platform</span><strong>Responsive website concept</strong></div>
+              <div><span>Product</span><strong>Custom bouquet shopping</strong></div>
+              <div><span>Design tool</span><strong>Figma</strong></div>
+            </div>
+            <div className="bloomcraft-hero-actions">
+              <a className="bloomcraft-inline-link" href="#bloomcraft-screens">Explore the screens <ArrowRight size={16} aria-hidden="true" /></a>
             </div>
           </div>
-
-          <div className="case-study-visual bloomcraft-visual" aria-label="BloomCraft website mockup">
-            <div className="mock-browser">
-              <div className="browser-bar">
-                <span />
-                <span />
-                <span />
-              </div>
-
-              <div className="browser-content">
-                <aside className="mock-sidebar">
-                  <div className="mock-pill active">Collections</div>
-                  <div className="mock-pill">Bouquets</div>
-                  <div className="mock-pill">Occasions</div>
-                  <div className="mock-pill">Build your own</div>
-                </aside>
-
-                <div className="mock-main-panel">
-                  <div className="mock-hero-card">
-                    <span>Custom bouquet</span>
-                    <strong>Build a floral arrangement that feels personal.</strong>
-                  </div>
-
-                  <div className="mock-product-row">
-                    <div className="mock-product-item large" />
-                    <div className="mock-product-item small" />
-                    <div className="mock-product-item small alt" />
-                  </div>
-
-                  <div className="mock-cta-row">
-                    <div className="mock-cta-block" />
-                    <div className="mock-cta-block muted" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <figure className="bloomcraft-hero-screenshot">
+            <img src={`${base}home.jpg`} alt="BloomCraft home page introducing custom bouquets, how it works, pricing, and the florist" fetchPriority="high" />
+            <figcaption>BloomCraft home page</figcaption>
+          </figure>
         </section>
 
-        <section className="case-study-section" id="bloomcraft-opportunity">
-          <div className="section-heading">
-            <span className="section-number">01</span>
-            <h2>Project overview</h2>
-          </div>
-
+        <section className="case-study-section bloomcraft-section" id="bloomcraft-overview-details">
+          <div className="section-heading"><span className="section-number">01</span><h2>Project overview</h2></div>
           <div className="case-study-two-col">
             <div className="case-study-copy-block">
-              <p>
-                BloomCraft is a floral e-commerce concept created to explore how an online flower store could feel more
-                personal and flexible. I wanted the experience to support both customers who prefer pre-made bouquets
-                and customers who want to build something based on their own preferences.
-              </p>
-              <p>
-                My role included exploring the browsing and purchasing experience, defining the customization flow, and
-                designing screens that made the selection process feel clear and enjoyable.
-              </p>
+              <p>BloomCraft is a floral e-commerce website concept for people who want to create a more personal bouquet. Its landing page presents the custom bouquet offer, explains the three-step process, shows pricing, and introduces the florist.</p>
+              <p>The supplied screens cover the home page and account entry through login and registration. The bouquet-builder interface itself is not included in these screens.</p>
             </div>
-
-            <div className="info-panel">
-              <h3>Design goal</h3>
-              <p>
-                Create a bouquet-shopping experience that feels personal without becoming overwhelming. The goal was to
-                make customization feel natural, guided, and easy to understand.
-              </p>
-            </div>
+            <dl className="bloomcraft-details-list">
+              {projectDetails.map(([term, detail]) => <div key={term}><dt>{term}</dt><dd>{detail}</dd></div>)}
+            </dl>
           </div>
         </section>
 
-        <section className="case-study-section" id="bloomcraft-research">
-          <div className="section-heading">
-            <span className="section-number">02</span>
-            <h2>Competitive analysis</h2>
+        <section className="case-study-section bloomcraft-section" id="bloomcraft-challenge">
+          <div className="section-heading"><span className="section-number">02</span><h2>Make customization easy to understand</h2></div>
+          <div className="bloomcraft-problem-panel">
+            <span><Sparkles size={20} aria-hidden="true" /></span>
+            <p>Visitors need to understand what they can customize, how the process works, and what price range to expect before they choose to begin.</p>
           </div>
+          <p className="bloomcraft-evidence-note">This design challenge is inferred from the supplied screens; no user research findings were included with the exports.</p>
+        </section>
 
-          <div className="case-study-copy-block wide-copy">
-            <p>
-              While analyzing several existing bouquet and flower websites, I noticed that many primarily focused on
-              pre-designed bouquets. These layouts made the experience feel efficient for browsing, but they left limited
-              room for users who wanted to create or customize a bouquet based on their own preferences.
-            </p>
-            <p>
-              This observation became the main design opportunity. Instead of treating bouquet building as an extra
-              feature, I wanted to make it a core part of the experience.
-            </p>
+        <section className="case-study-section bloomcraft-section" id="bloomcraft-journey">
+          <div className="section-heading"><span className="section-number">03</span><h2>A simple path from idea to account</h2></div>
+          <div className="bloomcraft-journey-grid">
+            {journey.map(([number, title, detail], index) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{detail}</p>{index < journey.length - 1 && <ArrowRight size={18} aria-hidden="true" />}</article>)}
           </div>
+        </section>
 
-          <div className="comparison-grid">
-            <article className="comparison-card">
-              <h3>Common pattern</h3>
-              <p>Browse pre-made bouquet collections, choose a set, and proceed to checkout with limited customization.</p>
+        <section className="case-study-section bloomcraft-section" id="bloomcraft-screens">
+          <div className="section-heading"><span className="section-number">04</span><h2>The BloomCraft screens</h2></div>
+          <p className="bloomcraft-section-intro">The supplied pages are arranged from the landing experience into account access.</p>
+          <div className="bloomcraft-screen-groups">
+            <article className="bloomcraft-screen-group">
+              <div className="bloomcraft-screen-copy"><span>01</span><h3>Introduce the bouquet experience</h3><p>The landing page combines its custom-bouquet message with the process, simple pricing, florist introduction, and contact details.</p></div>
+              <figure className="bloomcraft-home-screen"><img src={`${base}home.jpg`} alt="Full BloomCraft home page showing navigation, custom bouquet introduction, how it works, pricing, florist profile, and contact information" loading="lazy" decoding="async" /><figcaption>Home page</figcaption></figure>
             </article>
-            <article className="comparison-card emphasis">
-              <h3>Design opportunity</h3>
-              <p>Introduce a custom build bouquet flow that gives users more control without removing the convenience of ready-made options.</p>
+            <article className="bloomcraft-screen-group">
+              <div className="bloomcraft-screen-copy"><span>02</span><h3>Continue into an account</h3><p>Login and registration use the same floral backdrop, centered form panel, and links between account states.</p></div>
+              <div className="bloomcraft-account-screens">
+                <figure><img src={`${base}login.jpg`} alt="BloomCraft login page with email and password fields" loading="lazy" decoding="async" /><figcaption>Login</figcaption></figure>
+                <figure><img src={`${base}register.jpg`} alt="BloomCraft registration page with email, password, and confirmation fields" loading="lazy" decoding="async" /><figcaption>Register</figcaption></figure>
+              </div>
             </article>
           </div>
         </section>
 
-        <section className="case-study-section" id="bloomcraft-flow">
-          <div className="section-heading">
-            <span className="section-number">03</span>
-            <h2>Design opportunity</h2>
-          </div>
-
-          <div className="flow-grid">
-            {opportunitySteps.map((step, index) => (
-              <div className="flow-step" key={step}>
-                <span className="flow-index">0{index + 1}</span>
-                <p>{step}</p>
-                {index < opportunitySteps.length - 1 && <ArrowRight className="flow-arrow" size={18} />}
-              </div>
-            ))}
-          </div>
-
-          <div className="case-study-copy-block wide-copy">
-            <p>
-              The existing experience was mainly linear: browse, choose a ready-made bouquet, and purchase. I wanted to
-              extend that flow by adding a more personal pathway that allowed users to explore flowers, colors, and
-              bouquet structure before ordering.
-            </p>
+        <section className="case-study-section bloomcraft-section" id="bloomcraft-decisions">
+          <div className="section-heading"><span className="section-number">05</span><h2>Key UX decisions</h2></div>
+          <div className="bloomcraft-decision-grid">
+            {designDecisions.map(([Icon, title, detail]) => <article key={title}><Icon size={22} aria-hidden="true" /><h3>{title}</h3><p>{detail}</p></article>)}
           </div>
         </section>
 
-        <section className="case-study-section" id="bloomcraft-solution">
-          <div className="section-heading">
-            <span className="section-number">04</span>
-            <h2>Solution</h2>
+        <section className="case-study-section bloomcraft-section" id="bloomcraft-system">
+          <div className="section-heading"><span className="section-number">06</span><h2>A warm floral visual language</h2></div>
+          <div className="bloomcraft-style-panel">
+            <div className="bloomcraft-style-intro"><p className="case-study-kicker">Visual design</p><h3>Flower photography carries the story.</h3><p>The screens pair expressive floral imagery and a soft pink palette with bold, readable headings and simple navigation. Login and registration reuse the same visual treatment.</p></div>
+            <div className="bloomcraft-palette" aria-label="Approximate palette based on the supplied screens">
+              <div><span className="bloomcraft-swatch bloomcraft-swatch-blush" /><strong>Blush pink</strong></div>
+              <div><span className="bloomcraft-swatch bloomcraft-swatch-rose" /><strong>Rose accent</strong></div>
+              <div><span className="bloomcraft-swatch bloomcraft-swatch-berry" /><strong>Deep floral backdrop</strong></div>
+              <div><span className="bloomcraft-swatch bloomcraft-swatch-white" /><strong>Form white</strong></div>
+            </div>
           </div>
-
-          <div className="case-study-two-col">
-            <div className="case-study-copy-block">
-              <p>
-                I introduced a Custom Build Bouquet experience that sits alongside the pre-made collection experience.
-                This allowed users to either shop a curated design or create a floral arrangement based on their own
-                preferences.
-              </p>
-              <p>
-                The builder includes selected flowers, color options, bouquet style, and sizing decisions in a guided
-                flow. This helps reduce uncertainty while still giving the user control over the final arrangement.
-              </p>
-            </div>
-
-            <div className="feature-stack">
-              <div className="mini-feature"><Flower2 size={18} /> <span>Flower selection</span></div>
-              <div className="mini-feature"><Palette size={18} /> <span>Color and style direction</span></div>
-              <div className="mini-feature"><ShoppingBag size={18} /> <span>Checkout-ready preview</span></div>
-            </div>
+          <div className="bloomcraft-component-grid">
+            {components.map(([title, detail]) => <article key={title}><span><Palette size={17} aria-hidden="true" /></span><div><h3>{title}</h3><p>{detail}</p></div></article>)}
           </div>
         </section>
 
-        <section className="case-study-section" id="bloomcraft-user-flow">
-          <div className="section-heading">
-            <span className="section-number">05</span>
-            <h2>User flow</h2>
-          </div>
-
-          <div className="user-flow-grid">
-            <div className="user-flow-card">
-              <span>01</span>
-              <h3>Choose collection</h3>
-              <p>Users start by browsing either pre-made bouquets or the custom builder.</p>
-            </div>
-            <div className="user-flow-card">
-              <span>02</span>
-              <h3>Select flowers</h3>
-              <p>They choose the flowers and color story they want for the arrangement.</p>
-            </div>
-            <div className="user-flow-card">
-              <span>03</span>
-              <h3>Review the bouquet</h3>
-              <p>The preview helps them understand the final composition before purchase.</p>
-            </div>
-            <div className="user-flow-card">
-              <span>04</span>
-              <h3>Complete order</h3>
-              <p>The flow ends with a clear purchase path designed to feel straightforward.</p>
-            </div>
-          </div>
+        <section className="case-study-section bloomcraft-section bloomcraft-reflection">
+          <div className="section-heading"><span className="section-number">07</span><h2>Design reflection</h2></div>
+          <p>BloomCraft’s landing page introduces the custom bouquet idea through a clear message, an easy-to-follow process, and visible pricing. The account screens extend that floral identity into login and registration. Together, these pages show how a website can explain a service before asking visitors to sign in.</p>
         </section>
 
-        <section className="case-study-section" id="bloomcraft-ui">
-          <div className="section-heading">
-            <span className="section-number">06</span>
-            <h2>Final UI</h2>
+        <section className="case-study-footer bloomcraft-footer">
+          <div><p className="case-study-kicker">Keep exploring</p><h2>More product design work</h2><p>Return to the project collection or view Leafora, another commerce concept.</p></div>
+          <div className="bloomcraft-footer-actions">
+            <PortfolioButton href={`${import.meta.env.BASE_URL}#/projects/leafora`} variant="secondary">Next: Leafora</PortfolioButton>
+            <PortfolioButton href={`${import.meta.env.BASE_URL}#projects`} variant="secondary">Back to Projects</PortfolioButton>
           </div>
-
-          <div className="final-ui-grid">
-            <figure className="final-screen bloomcraft-screen-image">
-              <img src={loginScreen} alt="BloomCraft login screen" />
-              <figcaption>Login experience</figcaption>
-            </figure>
-            <figure className="final-screen bloomcraft-screen-image">
-              <img src={registerScreen} alt="BloomCraft registration screen" />
-              <figcaption>Registration experience</figcaption>
-            </figure>
-          </div>
-        </section>
-
-        <section className="case-study-section" id="bloomcraft-decisions">
-          <div className="section-heading">
-            <span className="section-number">07</span>
-            <h2>Key design decisions</h2>
-          </div>
-
-          <ul className="design-list">
-            {designDecisions.map((item) => (
-              <li key={item}>
-                <Check size={18} />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="case-study-section" id="bloomcraft-learnings">
-          <div className="section-heading">
-            <span className="section-number">08</span>
-            <h2>Learnings</h2>
-          </div>
-
-          <ul className="design-list">
-            {learningPoints.map((item) => (
-              <li key={item}>
-                <Compass size={18} />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="case-study-footer">
-          <PortfolioButton href={`${import.meta.env.BASE_URL}#projects`} variant="secondary">
-            Return to portfolio
-          </PortfolioButton>
         </section>
       </main>
     </>

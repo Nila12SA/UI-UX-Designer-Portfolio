@@ -1,10 +1,8 @@
-import { ArrowRight, Check, Compass, HeartPulse, Leaf, MoonStar, Sparkles, Users } from "lucide-react";
+import { ArrowRight, Check, Compass } from "lucide-react";
 import Header from "../components/Header.jsx";
 import PortfolioButton from "../components/Buttons.jsx";
-import bluetoothScreen from "../assets/Bluetooth connect1.png";
-import fingerScanScreen from "../assets/Finger scan2.png";
-import insightsScreen from "../assets/Insights & Recommendations.png";
-import auraLoginScreen from "../assets/Login1.png";
+
+const auraAssetBase = `${import.meta.env.BASE_URL}aura/`;
 
 const auraNavLinks = [
   { id: "aura-overview", label: "Overview" },
@@ -15,17 +13,32 @@ const auraNavLinks = [
 ];
 
 const conceptSteps = [
-  "Health data",
-  "Condition insight",
-  "Exercise suggestion",
-  "User action",
+  "Connect a device",
+  "Review a wellness signal",
+  "See a personalized insight",
+  "Choose a calming activity",
+];
+
+const auraScreenGroups = [
+  {
+    number: "01",
+    title: "Sign in and connect a device",
+    detail: "The login screen opens the experience. Device setup explains continuous monitoring, lists compatible wearables, and shows connection status.",
+    screens: [["login.png", "Aura login screen"], ["connect-device.png", "Connect a wearable device"]],
+  },
+  {
+    number: "02",
+    title: "Turn signals into a useful next step",
+    detail: "The Mind-Aura view surfaces a heart-rate reading and calm-mode action. The insights screen highlights a stress signal and offers breathing, meditation, nature sounds, and yoga activities.",
+    screens: [["mind-aura.png", "Mind-Aura visualization with heart-rate reading"], ["insights-recommendations.png", "Stress insight and wellness recommendations"]],
+  },
 ];
 
 const designDecisions = [
-  "I simplified health information into a calmer interface so the experience felt understandable rather than overwhelming.",
-  "The app presents condition insights in a way that supports clarity, while keeping the focus on personalized recommendations.",
-  "Exercise suggestions were surfaced as helpful next steps rather than medical claims or outcomes that were not validated.",
-  "The interface uses soft visual hierarchy, calm color treatment, and clear interaction states to support an easy user experience.",
+  "A dedicated device-connection screen explains continuous monitoring and lists compatible devices before the user starts a search.",
+  "A single BPM value and calm status make the Mind-Aura reading quick to scan in the visualization screen.",
+  "The insights screen pairs a stress message with one prominent breathing exercise and keeps other activities available as alternatives.",
+  "The concept presents wellness prompts and relaxation activities; the supplied screens do not claim diagnosis or treatment outcomes.",
 ];
 
 const learningPoints = [
@@ -40,19 +53,17 @@ function AuraCaseStudy() {
     <>
       <Header
         actionHref={`${import.meta.env.BASE_URL}#projects`}
-        actionLabel="Back to Portfolio"
+        actionLabel="Back to Projects"
         activeId="aura-overview"
         links={auraNavLinks}
       />
       <main className="case-study-shell aura-shell">
         <section className="case-study-hero" id="aura-overview">
           <div className="case-study-copy">
-            <p className="case-study-kicker">Aura</p>
-            <h1>Health-focused wellness concept exploring personalized exercise guidance.</h1>
+            <p className="case-study-kicker">Mobile Wellness · UI/UX Design</p>
+            <h1>Aura — Turning wellness signals into calmer next steps.</h1>
             <p className="case-study-lead">
-              Aura is a concept app focused on health and wellness. It explores how health-related measurements could be
-              translated into personalized exercise suggestions, while keeping the experience calm, easy to understand,
-              and user-centered.
+              A wearable-connected wellness concept that pairs health signals with a Mind-Aura visualization and guided relaxation activities.
             </p>
 
             <div className="case-study-project-meta">
@@ -62,40 +73,19 @@ function AuraCaseStudy() {
               </div>
               <div>
                 <span>Tools</span>
-                <strong>Figma, research notes</strong>
+                  <strong>Figma</strong>
               </div>
               <div>
                 <span>Project type</span>
-                <strong>Mobile app concept</strong>
+                  <strong>Wellness mobile app concept</strong>
               </div>
             </div>
           </div>
 
-          <div className="case-study-visual aura-visual" aria-label="Aura app mockup">
-            <div className="phone-frame">
-              <div className="phone-notch" />
-              <div className="phone-screen">
-                <div className="screen-header-row">
-                  <span>Good morning</span>
-                  <MoonStar size={16} />
-                </div>
-                <div className="screen-stat-card">
-                  <div className="stat-circle" />
-                  <div>
-                    <small>Heart & recovery</small>
-                    <strong>Balanced</strong>
-                  </div>
-                </div>
-                <div className="mini-chart" />
-                <div className="suggestion-card">
-                  <HeartPulse size={18} />
-                  <div>
-                    <small>Recommended</small>
-                    <strong>Breathing reset</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="aura-real-screens" aria-label="Aura screens: login, wearable connection, wellness visualization, and recommendations">
+            <figure className="aura-real-screen aura-real-screen-back"><img src={`${auraAssetBase}connect-device.png`} alt="" fetchPriority="high" /></figure>
+            <figure className="aura-real-screen aura-real-screen-main"><img src={`${auraAssetBase}insights-recommendations.png`} alt="" fetchPriority="high" /></figure>
+            <figure className="aura-real-screen aura-real-screen-front"><img src={`${auraAssetBase}mind-aura.png`} alt="" fetchPriority="high" /></figure>
           </div>
         </section>
 
@@ -108,18 +98,14 @@ function AuraCaseStudy() {
           <div className="case-study-two-col">
             <div className="case-study-copy-block">
               <p>
-                Aura is a design exploration that looks at how health-related measurements such as blood pressure and
-                heartbeat might be used to guide simple exercise recommendations. The project is not positioned as a
-                medical system or diagnosis tool; instead, it focuses on how a user-centered interface could translate
-                measurements into understandable wellness guidance.
+                Aura is a wearable-connected wellness concept. The supplied screens show device setup, a heart-rate reading with a calm status, a stress insight, and a set of relaxation activities.
               </p>
             </div>
 
             <div className="info-panel">
               <h3>What I was exploring</h3>
               <p>
-                I wanted to understand how an app could turn health data into a clear, helpful next step for the user,
-                while still feeling calm and approachable.
+                The interface explores how connected-device signals could lead into approachable wellness guidance, while keeping the user's next choices clear.
               </p>
             </div>
           </div>
@@ -133,13 +119,10 @@ function AuraCaseStudy() {
 
           <div className="case-study-copy-block wide-copy">
             <p>
-              I was not familiar with AR/VR technologies at the beginning of this project, so I used AI-assisted tools
-              and online resources to learn the basic concepts and possibilities. This was secondary research and
-              exploration, not formal academic or medical research.
+              I explored how connected-device signals and an immersive visual direction might be presented in a wellness interface. This was concept exploration rather than formal medical research or evidence of a validated health product.
             </p>
             <p>
-              The goal was to understand the technology well enough to think carefully about how it could support the
-              product concept and the user experience.
+              The design frames those signals as prompts for reflection and relaxation activities. The screens do not establish clinical interpretation or treatment outcomes.
             </p>
           </div>
 
@@ -173,9 +156,7 @@ function AuraCaseStudy() {
 
           <div className="case-study-copy-block wide-copy">
             <p>
-              The intended experience begins with health-related measurements, moves into a condition insight, and then
-              recommends an exercise or action that may support the user in that moment. I wanted the flow to feel
-              helpful without becoming overly technical or difficult to interpret.
+              The screens suggest a sequence from connecting a wearable, to viewing a heart-rate and calm-state visualization, to reviewing a stress insight and choosing a relaxation activity.
             </p>
           </div>
         </section>
@@ -205,7 +186,7 @@ function AuraCaseStudy() {
             <div className="user-flow-card">
               <span>04</span>
               <h3>Take action</h3>
-              <p>Recommendations guide the user toward an exercise or wellness activity.</p>
+              <p>Recommendations offer a relaxation activity such as breathing, meditation, or nature sounds.</p>
             </div>
           </div>
         </section>
@@ -213,20 +194,17 @@ function AuraCaseStudy() {
         <section className="case-study-section" id="aura-ui">
           <div className="section-heading">
             <span className="section-number">05</span>
-            <h2>Final UI</h2>
+            <h2>Device connection and wellness guidance</h2>
           </div>
 
-          <div className="final-ui-grid">
-            {[
-              [auraLoginScreen, "Login screen"],
-              [bluetoothScreen, "Connect your device"],
-              [fingerScanScreen, "Mind-Aura visualization"],
-              [insightsScreen, "Insights and recommendations"],
-            ].map(([image, caption]) => (
-              <figure className="final-screen aura-screen-image" key={caption}>
-                <img src={image} alt={`Aura ${caption}`} />
-                <figcaption>{caption}</figcaption>
-              </figure>
+          <div className="aura-screen-groups">
+            {auraScreenGroups.map(({ number, title, detail, screens }) => (
+              <article className="aura-screen-group" key={number}>
+                <div className="aura-screen-copy"><span>{number}</span><h3>{title}</h3><p>{detail}</p></div>
+                <div className="aura-screen-gallery">
+                  {screens.map(([file, caption]) => <figure key={file}><img src={`${auraAssetBase}${file}`} alt={`Aura ${caption}`} loading="lazy" decoding="async" /><figcaption>{caption}</figcaption></figure>)}
+                </div>
+              </article>
             ))}
           </div>
         </section>
@@ -279,9 +257,8 @@ function AuraCaseStudy() {
         </section>
 
         <section className="case-study-footer">
-          <PortfolioButton href={`${import.meta.env.BASE_URL}#projects`} variant="secondary">
-            Return to portfolio
-          </PortfolioButton>
+          <PortfolioButton href={`${import.meta.env.BASE_URL}#/projects/bloomcraft`} variant="secondary">Next: BloomCraft</PortfolioButton>
+          <PortfolioButton href={`${import.meta.env.BASE_URL}#projects`} variant="secondary">Back to Projects</PortfolioButton>
         </section>
       </main>
     </>

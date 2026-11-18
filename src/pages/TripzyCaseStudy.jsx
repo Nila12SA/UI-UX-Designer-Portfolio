@@ -1,9 +1,8 @@
-import { Accessibility, ArrowRight, CarFront, Check, Compass, Leaf, Users } from "lucide-react";
+import { Accessibility, ArrowRight, Check, Compass, Leaf, Users } from "lucide-react";
 import Header from "../components/Header.jsx";
 import PortfolioButton from "../components/Buttons.jsx";
-import tripzyHomeScreen from "../assets/home.png";
-import tripzyRidesScreen from "../assets/iPhone 16 - 33.png";
-import tripzyUserScreen from "../assets/Tripzy user.png";
+
+const tripzyAssetBase = `${import.meta.env.BASE_URL}tripzy/`;
 
 const tripzyNavLinks = [
   { id: "tripzy-overview", label: "Overview" },
@@ -34,6 +33,33 @@ const opportunitySteps = [
   "Improve accessibility",
 ];
 
+const tripzyScreenGroups = [
+  {
+    number: "01",
+    title: "Start with the ride experience",
+    detail: "The welcome screen introduces Tripzy, followed by ride categories and special features for older adults and disabled people.",
+    screens: [["ride-loading.png", "Tripzy welcome screen"], ["ride-home.png", "Rides home screen"]],
+  },
+  {
+    number: "02",
+    title: "Make room for different ways to earn",
+    detail: "The driver pathway begins with a profile area, then lets people choose a vehicle and earning option that matches their situation.",
+    screens: [["driver-profile.png", "Tripzy user profile"], ["earning-choices.png", "Driver earning choices"]],
+  },
+  {
+    number: "03",
+    title: "Explain the next steps to drivers",
+    detail: "The onboarding checklist shows the documents still needed, while the earning form collects location and an optional referral code.",
+    screens: [["earn-with-tripzy.png", "Earn with Tripzy form"], ["driver-checklist.png", "Driver onboarding checklist"]],
+  },
+  {
+    number: "04",
+    title: "Guide profile verification",
+    detail: "The profile photo screen explains how the image will be checked and gives practical guidance before the person takes a photo.",
+    screens: [["verify-profile.png", "Profile photo verification guidance"], ["driver-step-one.png", "Driver onboarding with a recommended next step"]],
+  },
+];
+
 function TripzyCaseStudy() {
   return (
     <>
@@ -44,14 +70,12 @@ function TripzyCaseStudy() {
         links={tripzyNavLinks}
       />
       <main className="case-study-shell tripzy-shell">
-        <section className="case-study-hero" id="tripzy-overview">
+        <section className="case-study-hero tripzy-real-hero" id="tripzy-overview">
           <div className="case-study-copy">
             <p className="case-study-kicker">Tripzy</p>
-            <h1>Accessible ride-booking experience designed for clarity and ease of use.</h1>
+            <h1>Ride booking and driver onboarding designed for clarity and access.</h1>
             <p className="case-study-lead">
-              Tripzy is a transportation app concept focused on making ride-booking feel easier to understand and more
-              inclusive for a wider range of users. The design uses familiar app patterns as a reference while aiming to
-              simplify the experience for users who may find complex interfaces harder to navigate.
+              Tripzy brings passenger ride options together with a guided driver sign-up journey, helping people understand how to request a ride or begin driving with the service.
             </p>
 
             <div className="case-study-project-meta">
@@ -65,35 +89,31 @@ function TripzyCaseStudy() {
               </div>
               <div>
                 <span>Project type</span>
-                <strong>Mobile app concept</strong>
+                <strong>Ride and driver app concept</strong>
               </div>
             </div>
           </div>
 
-          <div className="case-study-visual tripzy-visual" aria-label="Tripzy app mockup">
-            <div className="phone-frame tripzy-frame">
-              <div className="phone-notch" />
-              <div className="phone-screen tripzy-screen">
-                <div className="screen-header-row">
-                  <span>Choose ride</span>
-                  <CarFront size={16} />
-                </div>
-                <div className="screen-stat-card tripzy-card">
-                  <div className="stat-circle tripzy-circle" />
-                  <div>
-                    <small>Pickup</small>
-                    <strong>Downtown</strong>
-                  </div>
-                </div>
-                <div className="mini-chart tripzy-chart" />
-                <div className="suggestion-card tripzy-suggestion">
-                  <Accessibility size={18} />
-                  <div>
-                    <small>Ride option</small>
-                    <strong>Accessible</strong>
-                  </div>
-                </div>
-              </div>
+          <div className="tripzy-real-screens" aria-label="Tripzy screens: passenger home, earning choices, and driver verification">
+            <figure className="tripzy-real-screen tripzy-real-screen-back"><img src={`${tripzyAssetBase}earning-choices.png`} alt="" fetchPriority="high" /></figure>
+            <figure className="tripzy-real-screen tripzy-real-screen-main"><img src={`${tripzyAssetBase}ride-home.png`} alt="" fetchPriority="high" /></figure>
+            <figure className="tripzy-real-screen tripzy-real-screen-front"><img src={`${tripzyAssetBase}verify-profile.png`} alt="" fetchPriority="high" /></figure>
+          </div>
+        </section>
+
+        <section className="case-study-section" id="tripzy-project-summary">
+          <div className="section-heading">
+            <span className="section-number">Project</span>
+            <h2>One app, two connected journeys</h2>
+          </div>
+          <div className="case-study-two-col">
+            <div className="case-study-copy-block">
+              <p>The supplied Tripzy screens cover both a passenger ride-discovery experience and a driver onboarding journey. Riders can explore ride and delivery options, including features presented for older adults and disabled people.</p>
+              <p>For prospective drivers, the screens show earning choices, vehicle eligibility information, a document checklist, and profile-photo verification guidance.</p>
+            </div>
+            <div className="tripzy-journey-summary">
+              <article><span>Passenger</span><strong>Explore ride options and trip services</strong></article>
+              <article><span>Driver</span><strong>Choose an earning path and complete setup</strong></article>
             </div>
           </div>
         </section>
@@ -239,19 +259,17 @@ function TripzyCaseStudy() {
         <section className="case-study-section" id="tripzy-ui">
           <div className="section-heading">
             <span className="section-number">06</span>
-            <h2>Final UI</h2>
+            <h2>Passenger and driver screens</h2>
           </div>
 
-          <div className="final-ui-grid">
-            {[
-              [tripzyHomeScreen, "Tripzy loading screen"],
-              [tripzyRidesScreen, "Rides booking screen"],
-              [tripzyUserScreen, "Tripzy user profile"],
-            ].map(([image, caption]) => (
-              <figure className="final-screen tripzy-screen-image" key={caption}>
-                <img src={image} alt={caption} />
-                <figcaption>{caption}</figcaption>
-              </figure>
+          <div className="tripzy-screen-groups">
+            {tripzyScreenGroups.map(({ number, title, detail, screens }) => (
+              <article className="tripzy-screen-group" key={number}>
+                <div className="tripzy-screen-copy"><span>{number}</span><h3>{title}</h3><p>{detail}</p></div>
+                <div className={`tripzy-screen-gallery ${screens.length === 1 ? "is-single" : ""}`}>
+                  {screens.map(([file, caption]) => <figure key={file}><img src={`${tripzyAssetBase}${file}`} alt={`Tripzy ${caption}`} loading="lazy" decoding="async" /><figcaption>{caption}</figcaption></figure>)}
+                </div>
+              </article>
             ))}
           </div>
         </section>
@@ -273,9 +291,8 @@ function TripzyCaseStudy() {
         </section>
 
         <section className="case-study-footer">
-          <PortfolioButton href={`${import.meta.env.BASE_URL}#projects`} variant="secondary">
-            Return to portfolio
-          </PortfolioButton>
+          <PortfolioButton href={`${import.meta.env.BASE_URL}#/projects/leafora`} variant="secondary">Next: Leafora</PortfolioButton>
+          <PortfolioButton href={`${import.meta.env.BASE_URL}#projects`} variant="secondary">Back to Projects</PortfolioButton>
         </section>
       </main>
     </>

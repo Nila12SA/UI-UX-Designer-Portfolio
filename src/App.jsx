@@ -9,6 +9,8 @@ import Footer from "./components/Footer.jsx";
 import AuraCaseStudy from "./pages/AuraCaseStudy.jsx";
 import TripzyCaseStudy from "./pages/TripzyCaseStudy.jsx";
 import BloomcraftCaseStudy from "./pages/BloomcraftCaseStudy.jsx";
+import FixnowCaseStudy from "./pages/FixnowCaseStudy.jsx";
+import LeaforaCaseStudy from "./pages/LeaforaCaseStudy.jsx";
 
 const basePath = import.meta.env.BASE_URL;
 const portfolioHashes = ["#home", "#about", "#skills", "#projects", "#contact"];
@@ -16,6 +18,8 @@ const projectRoutes = {
   aura: "#/projects/aura",
   tripzy: "#/projects/tripzy",
   bloomcraft: "#/projects/bloomcraft",
+  fixnow: "#/projects/fixnow",
+  leafora: "#/projects/leafora",
 };
 
 const getProjectRoute = () => {
@@ -34,7 +38,9 @@ function App() {
   const isAuraCaseStudy = route === "aura";
   const isTripzyCaseStudy = route === "tripzy";
   const isBloomcraftCaseStudy = route === "bloomcraft";
-  const isCaseStudy = isAuraCaseStudy || isTripzyCaseStudy || isBloomcraftCaseStudy;
+  const isFixnowCaseStudy = route === "fixnow";
+  const isLeaforaCaseStudy = route === "leafora";
+  const isCaseStudy = isAuraCaseStudy || isTripzyCaseStudy || isBloomcraftCaseStudy || isFixnowCaseStudy || isLeaforaCaseStudy;
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -115,6 +121,14 @@ function App() {
 
   if (isBloomcraftCaseStudy) {
     return <BloomcraftCaseStudy />;
+  }
+
+  if (isFixnowCaseStudy) {
+    return <FixnowCaseStudy />;
+  }
+
+  if (isLeaforaCaseStudy) {
+    return <LeaforaCaseStudy />;
   }
 
   return (
